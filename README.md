@@ -8,5 +8,5 @@
 
 1. 在更新和删除pod的时候调谐函数不能捕捉到事件；
 
-2. 不适用kubebuilder工具，基于sample-controller实现的这个任务的Controller可以捕获到事件。但是不知道如何写Dockerfile部署在集群中。
+2. 不使用kubebuilder工具，基于sample-controller实现任务要求的Operator可以捕获到事件。但是不知道如何写Dockerfile部署在集群中。
 
