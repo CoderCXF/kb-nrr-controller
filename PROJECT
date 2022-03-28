@@ -1,0 +1,16 @@
+domain: dancingcode.cn
+layout:
+- go.kubebuilder.io/v3
+projectName: kb-nrr-controller
+repo: dancingcode.cn/kb-nrr-controller
+resources:
+- api:
+    crdVersion: v1
+    namespaced: true
+  controller: true
+  domain: dancingcode.cn
+  group: cloud
+  kind: NamespaceResourceReport
+  path: dancingcode.cn/kb-nrr-controller/api/v1beta1
+  version: v1beta1
+version: "3"

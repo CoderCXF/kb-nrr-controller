@@ -1,0 +1,6 @@
+apiVersion: cloud.dancingcode.cn/v1beta1
+kind: NamespaceResourceReport
+metadata:
+  name: namespaceresourcereport-sample
+spec:
+  # TODO(user): Add fields here

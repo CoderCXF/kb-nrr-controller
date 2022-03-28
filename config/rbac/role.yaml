@@ -1,0 +1,33 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: manager-role
+rules:
+- apiGroups:
+  - cloud.dancingcode.cn
+  resources:
+  - namespaceresourcereports
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - cloud.dancingcode.cn
+  resources:
+  - namespaceresourcereports/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - cloud.dancingcode.cn
+  resources:
+  - namespaceresourcereports/status
+  verbs:
+  - get
+  - patch
+  - update
