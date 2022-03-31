@@ -20,6 +20,7 @@ import (
 	"context"
 	cloudv1beta1 "dancingcode.cn/kb-nrr-controller/api/v1beta1"
 	"fmt"
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/klog/v2"
@@ -55,10 +56,43 @@ func (r *NamespaceResourceReportReconciler) Reconcile(ctx context.Context, req c
 	klog.Info(config)
 	// TODO(user): your logic here
 	instance := &cloudv1beta1.NamespaceResourceReport{}
-	err := r.Get(ctx, req.NamespacedName, instance)
-	if err != nil {
-		klog.Fatal("r.Get error")
+	//err := r.Get(ctx, req.NamespacedName, instance)
+	//if err != nil {
+	//	klog.Fatal("r.Get error")
+	//}
+	// TODO: kubediag-delete instance
+	if err := r.Get(ctx, req.NamespacedName, instance); err != nil {
+		//log.Error(err, "unable to fetch Operation")
+		klog.Fatal("unable to fetch instance")
+		// Remove script file if the operation(instance) is deleted.
+		if apierrors.IsNotFound(err) {
+			//scriptFilePath := filepath.Join(r.dataRoot, ScriptSubDirectory, req.Name)
+			//_, err := os.Stat(scriptFilePath)
+			//if !os.IsNotExist(err) {
+			//	err := os.RemoveAll(scriptFilePath)
+			//	if err != nil {
+			//		log.Error(err, "failed to remove script file", "filepath", scriptFilePath)
+			//		return ctrl.Result{}, nil
+			//	}
+			//}
+
+			//functionDirectory := filepath.Join(r.dataRoot, FunctionSubDirectory, req.Name)
+			//_, err = os.Stat(functionDirectory)
+			//if !os.IsNotExist(err) {
+			//	err = os.RemoveAll(functionDirectory)
+			//	if err != nil {
+			//		log.Error(err, "failed to remove function directory", "filepath", functionDirectory)
+			//		return ctrl.Result{}, nil
+			//	}
+			//}
+
+			return ctrl.Result{}, nil
+		}
+
+		return ctrl.Result{}, err
 	}
+
+	//
 	namespaceName := instance.Spec.NamespaceName
 	klog.Infoln(namespaceName)
 

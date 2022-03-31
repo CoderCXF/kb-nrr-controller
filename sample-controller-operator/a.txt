@@ -1,0 +1,1 @@
+bash vendor/k8s.io/code-generator/generate-groups.sh "deepcopy,client,informer,lister" nrr-controller/pkg/client nrr-controller/pkg/apis cloud:v1 --output-base  ../ --go-header-file "./hack/boilerplate.go.txt
